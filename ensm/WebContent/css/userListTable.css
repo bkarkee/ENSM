@@ -1,0 +1,144 @@
+body {
+	background-color: #12273b;
+	background-size: 100%;
+	font-size: 14px;
+	font-family: Arial;
+}
+
+input {
+	color: black;
+	margin: 3px ;
+	padding-left: 5px;
+}
+
+
+button {
+	background-color: #12273b;
+	border-radius: 30px;
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	width: 125px;
+	height: 40px;
+}
+
+H1{
+	margin-top: 22px;
+	color:white;
+	text-align: center;
+}
+
+td {
+	background-color: #12273b;
+	width: inherit;
+}
+
+th {
+	background-color: black;
+	color: white;
+	width: 100px;
+}
+
+label {
+	color: white;
+}
+
+select {
+	width: 100%;
+}
+
+p {
+	font-size: 18px;
+	margin: 0px auto;
+	width: 80%;
+	text-align: center-left;
+	Color: #ebebe0;
+}
+
+#myTable{
+	width: 830px;
+}
+
+#h1tag{
+	margin: auto;
+	Color: #ebebe0;
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#maindiv {
+	height: 375px;
+	width: 1030px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.buttonopt {
+	background-color: #339966;
+	border: none;
+	color: black;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+#btnExport{
+	margin-left: 72%;
+	margin-right: 5%;
+	margin-top: -1%;
+	background-color: #25527a;
+	border-radius: 30px;
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 18px;
+	cursor: pointer;
+	width: 125px;
+	height: 40px;
+	
+	
+}
+
+#imagefile {
+	text-align: center;
+}
+
+#subdiv1 {
+	border: 5px solid Black;
+	height: 340px;
+	width: 150px;
+	background-color: #25527a;
+	float: left;
+	text-align: center;
+}
+
+#subdiv2 {
+	height: 340px;
+	width: 850px;
+	background-color: #25527a;
+	float: left;
+	border: 5px solid Black;
+	border-left: 0px;
+	overflow-y: scroll;
+}
+
+#logout {
+	margin-top: 30px;
+}
+
+	
+	
+	

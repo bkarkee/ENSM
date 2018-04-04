@@ -1,0 +1,204 @@
+Welcome to the documentation for the IBM Monroe Emergency Notification System (IMENS or EMS).
+
+This document will give you a high level of how the app is designed, and the layout of when each function is called.
+
+Original Developers of this app include:
+-Management- 
+Chris Bartlett	 (christine.l.bartlett@us.ibm.com)
+Brien Louque     (blouque@us.ibm.com)
+
+-Lead Developer- 
+Anthony Meccia   (ajmeccia@us.ibm.com)
+
+-Developers- 
+Bipin Karkee     (bkarkee@us.ibm.com)
+Binod Rawal      (rawalb@us.ibm.com)
+Krishna Bhandari (kbhanda@us.ibm.com)
+Dairen Lambert   (dilamber@us.ibm.com)
+Gaelen LeBlanc   (gaelenl@us.ibm.com)
+
+-----EMS Overview-----
+This application was developed to give our CiC the ability to send out an emergency text to everyone in the center. These
+messages could be for a number of reasons, but normally will be in regards to the center being closed. The application has
+two primary functions when sending a text: normal text, or Needs Response. If the Admin decides that he needs a response,
+a ticket will be created, and will update with all the information each user passes back. The administrator accounts have
+the ability to look at two tables, one for all users, and one for ticket responses.
+
+----Libraries---- (WEB-INF/lib folder)
+activation: used during reading MIME messages during the EmailReaders run() function.
+local_policy: needed for using javax.crypto functions (used for encrypting user password)
+javaQuery: contains the method to use the tinyURL method.
+javax-mail-1.5.5: This is the JavaMail.api
+javax.servlet.jsp.jstl-1.2.1: contains the methods to read tags in jsp pages
+postgresql-9.4.1208: contains the methods to connect to the database
+US_export_policy: needed for using javax.crypto functions (used for encrypting user password)
+
+-----User Pages-----
+The pages any regular user can see include the following:
+activate.jsp 		//used to active the users account. this is reached by an activation mail from the users email
+activateFailure.jsp //displays activation failure to user
+activateSuccess.jsp //displays activation Success to user
+changePassword.jsp  //Allows the user to input a new password. Cannot access this page without email from retrievePassword.jsp
+index.jsp			//login page
+register.jsp 		//registration page
+registerSuccess.jsp //confirmation page for the user after registration
+Result.jsp 			//this is to confirm a user has requested to change their password
+retrievePassword.jsp//Allows the user to send a password change request to their email
+userProfile.jsp		//Allows the user to view and change their information
+
+
+-----Admin Pages-----
+adminPage.jsp			//Handles two pages: Send Text, and Profile
+userListTable.jsp		//Shows all users signed up for the app
+textResponsePage.jsp	//shows all users responses to last sent text
+UserListExport.jsp		//Allows the management to export all user details to Excel sheet.
+
+
+-----Servlet-----
+The servlet handles all forms of user requests. 
+
+---Servlet variables---
+serialVersionUID - This is used for serialization of objects
+emailReader - this is the class that runs the constant email checks for user responses
+
+---Servlet methods---
+doGet: Handles the redirection to register page with an array in session for carriers, and password reset.
+
+doPost: Handles all other posts, due to sensitive information.
+
+checkEnvironment: Checks whether the calling client is in the testing (localhost) or production (prod url) environment. These
+constants can be found in ApplicationConstants at the bottom. If the URL changes for where this app is deployed, 
+be sure to update 'prodURL'.
+
+generateSalt: Generates a unique code for each user, giving security to log-in.
+
+shorturl: Uses TinyUrl to shorten the URLS we send to the users. (this helps us lower the character count in each text)
+
+adminSendText: Handles the response from SendText and redirection.
+
+passwordChange: Handles the response from passwordchange and redirection.
+
+loginUser: Handles the response to logging in a user and redirection.
+
+clearTicket: clears all users from the table ticket and redirection.
+
+
+---Java classes--- (wasdev.sample.model)
+--Carrier.java-- 
+Carrier holds two variables - 1. carrier name 2. carrier address | This class is used for passing each
+carriers information to a page, or to a send text method. This was created so that if carriers needs to be added or
+changes, it can be done so in the database, and will not require any code change.
+
+--EmailReader.java-- 
+EmailReader is a class that holds a runnable to check emails on a constant interval. The class is
+structured below:
+
+contextInitialized/Destroyed: Starts and stops the current running thread. These will only happen on app start, and app end.
+
+Class FetchMail: This is where all the magic happens for reading emails. 
+
+FetchMail methods: run, readMessage, dumpSinglePart, dumpMultiPart, displayEmailToLogs, restartFetchMail.
+
+run: this is the main method for fetchmail. It is the starting point that will call to other methods later. run starts
+by creating a connection to the gmail account, and opens two folders: Inbox and Archived. Inbox is where we read all
+new messages from users. Archived was created to save the emails that were not able to be read by the class, so that
+the developers could do some inspection and hopefully fix code later on if necessary.
+
+The code then grabs all messages from users that have not been seen and places them into an array called messages[].
+Each message is then sent to readMessage. after readMessage is finished, it passes back either a true or false. This
+boolean is used to determine if the email was able to be read for a user update. If it fails, the message is archived
+so that a developer can inspect later to see what the error was in reading that message.
+
+readMessage: Firstly, readMessage passes the message to displayEmailToLogs. this method is only there to display the
+email message to the logs, thus helping if errors are seen reading messages. After this method is run, it runs a check
+to see if the message is plain-text or a multipart message.
+If the message is plain-text, it is very easy to decode.
+If the message is multipart, it normally means that the message contains multiple parts, such as text, images, 
+attachments, etc. multipart messages can be very difficult to break down, and you can see in the code how we have dealt
+with them up till now. 
+
+After these complete, if they were successful, the message is deleted from the inbox. if they failed, the message 
+will be archived, and the cycle will start anew next interval.
+
+restartFetchMail: This method was implemented due to gmail crashes and failures. It will restart the thread after a crash, and end the failed thread.
+
+updateUserTicket: This method is to take any information gathered from the users email message and update the database
+accordingly. There are 2 possible responses: Yes and No. Both update the users ticket with their response and 
+all text they input into the email.
+
+updateUserConfirmToken: confirms that their phone is correct so that the Admin can see this in the UserListTable (userListTable.jsp)
+
+deleteUser: deletes the user from the application.
+
+
+--User.java--
+This class holds all information for the user. 
+This is used in multiple places in the app:
+1. log-in - Adds the user to the session
+2. userListTable - an arraylist of users is added to the session to be used for this table.
+3. textresponseTable - an arraylist of the users responses is added to the session
+
+
+------Static Methods----- (wasdev.sample.methods)
+All of the classes in this package are static, and will never be instantiated. They are only used for calls from the
+servlet based on client requests.
+
+--AdminPage.java--
+Contains methods to handle sendtext and profile page for the admin.
+
+-Methods-
+sendMassText: this is the call to send an emergency text out.
+gatherFromResultSet: This gathers all users that fall into the recipients group.
+getAddressOfCarrier: returns the text address of the user to be texted (AT&T example: 1112223333@txt.att.net)
+printMassTextToLogs: prints the message the admin is sending out to logs.
+sendResponseMessage: handles sending a message that requires a response. this normally requires sending an additional message.
+
+--ApplicationConstants.java--
+Contains all of the constants that are used throughout the application. These are static final fields. These fields contain
+several db calls such as SELECT, INSERT, UPDATE and DELETE. It also contains the constants for testing and production URLs
+
+--AuthenticateUserPassword.java--
+Contains 2 methods that convert the users password to its encripted form to check against the Database password. this is for added
+log-in security.
+
+--ConnectToGmail.java--
+Straightforward class here. Gather the login information for the gmail account we are using, 
+sign in to the account and pass back that session.
+
+--DatabaseConnection.java--
+Contains the method to connect to the database, and returns the connection variable.
+
+--GatherCarriers.java--
+Connects to the database and returns an array of all the carriers.
+
+--Login.java--
+Tries to log the user in by validating the db information, then adds that user to the session.
+
+--ResponseTable.java--
+Contains 3 methods: (these all relate to textResponsePage.jsp and the response table in our database)
+gatherResponseData: returns all of the users that were texted. This array holds their names, phone #'s, response value,
+and response body.
+writeToResponse: This writes all of the new responses for the admin page to refresh itself.
+clearTicket: clears all users from the response database table.
+
+--SendEmail.java--
+Creates a connection to our gmail account and sends emails passed to this function.
+
+--UserListTable.java--
+Contains 2 methods: (these relate to userListTable.jsp and the user table in our database)
+databaseTable: returns an array of all the users in the system.
+updateUserTable: takes the changes sent by the admin on the page and updates the database.
+
+--UserProfile.java--
+A large majority of our application will be handled here.
+
+signUpUser: handles the information passed from register.java.
+userActivate: After signing up, the user receives an email that redirects them to a page that activates their account. After
+activation, they are sent a text message to confirm their phone number on the account.
+updateUserProfile: Handles any update the user passes for their profile. (name, phone#, carrier)
+changePasswordRequest: sends an email to the account trying to change their password.
+validateUserPasswordChange: validates the users entered information against the database info. this must return true for
+the password change to happen.
+executePasswordChange: updates the users password.
+deleteUser: removes the user from the system.
+

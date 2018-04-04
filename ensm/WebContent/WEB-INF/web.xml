@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.1" 
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+	<display-name>ensm</display-name>
+	
+	<servlet>
+    	<servlet-name>activate</servlet-name>
+    	<jsp-file>/activate.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>activate</servlet-name>
+    	<url-pattern>/activate</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>activateFailure</servlet-name>
+    	<jsp-file>/activateFailure.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>activateFailure</servlet-name>
+    	<url-pattern>/activateFailure</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>activateSuccess</servlet-name>
+    	<jsp-file>/activateSuccess.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>activateSuccess</servlet-name>
+    	<url-pattern>/activateSuccess</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>addUsers</servlet-name>
+    	<jsp-file>/addUsers.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>addUsers</servlet-name>
+    	<url-pattern>/addUsers</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>adminPage</servlet-name>
+    	<jsp-file>/adminPage.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>adminPage</servlet-name>
+    	<url-pattern>/adminPage</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>changePassword</servlet-name>
+    	<jsp-file>/changePassword.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>changePassword</servlet-name>
+    	<url-pattern>/changePassword</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>landing</servlet-name>
+    	<jsp-file>/index.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>landing</servlet-name>
+    	<url-pattern>*/</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>index</servlet-name>
+    	<jsp-file>/index.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>index</servlet-name>
+    	<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>register</servlet-name>
+    	<jsp-file>/register.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>register</servlet-name>
+    	<url-pattern>/register</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>registerSuccess</servlet-name>
+    	<jsp-file>/registerSuccess.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>registerSuccess</servlet-name>
+    	<url-pattern>/registerSuccess</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>result</servlet-name>
+    	<jsp-file>/result.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>result</servlet-name>
+    	<url-pattern>/result</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>retrievePassword</servlet-name>
+    	<jsp-file>/retrievePassword.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>retrievePassword</servlet-name>
+    	<url-pattern>/retrievePassword</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>textResponsePage</servlet-name>
+    	<jsp-file>/textResponsePage.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>textResponsePage</servlet-name>
+    	<url-pattern>/textResponsePage</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>update</servlet-name>
+    	<jsp-file>/update.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>update</servlet-name>
+    	<url-pattern>/update</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>userListExport</servlet-name>
+    	<jsp-file>/userListExport.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>userListExport</servlet-name>
+    	<url-pattern>/userListExport</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>userListTable</servlet-name>
+    	<jsp-file>/userListTable.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>userListTable</servlet-name>
+    	<url-pattern>/usersTable</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>userProfile</servlet-name>
+    	<jsp-file>/userProfile.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>userProfile</servlet-name>
+    	<url-pattern>/userProfile</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index</welcome-file>
+	</welcome-file-list>
+	
+</web-app>

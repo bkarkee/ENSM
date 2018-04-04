@@ -1,0 +1,47 @@
+Database table layouts:
+
+-'Login' table-
+PK String email,
+byte[] password,
+
+-'Users' table-
+PK String email,
+String firstname,
+String lastname,
+String phonenumber,
+String carrier,
+boolean confirmedphone,
+boolean management,
+int floor;
+
+-'Activation' table-
+PK String email,
+String firstname,
+String lastname,
+String phonenumber,
+String carrier,
+String acode,
+byte[] password,
+
+-'ResponseTable' table-
+PK String email;
+
+-'PhoneCarriers' table-
+PK String provider,
+String phoneaddress;
+
+-'passwordreset' table-
+PK String email,
+Date date,
+String uid;
+
+-'ticketids' table-
+PK String ticketid,
+Date date,
+String text;
+
+-'usertexts' table-
+String email,
+String ticketid,
+String date,
+String text;

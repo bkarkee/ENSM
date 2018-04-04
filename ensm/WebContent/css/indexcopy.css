@@ -1,0 +1,102 @@
+h1{
+	Color: #ebebe0;
+}
+
+body{
+	background-color:#12273b;
+	min-width:700px;
+	text-align:center;
+}
+form{
+    text-align:center-left;
+	background-color: #12273b;
+	width:650px;
+	height: 390px;
+	padding-left: 0px ;
+	padding-top: 15px ; 
+	padding-right: 15px ; 
+	margin: 0;
+}
+
+input[type="text"]{
+	width:300px;
+	color:white;
+	text-align: left;
+	border:medium none;
+	padding:10px;
+	background-color:#060c0f;
+
+}
+
+button {
+	background-color: #53acef;
+	border-radius: 30px;
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 18px;
+	cursor: pointer;
+	width: 125px;
+	height: 40px;
+}
+
+#signin {
+	width: 150px;
+}
+
+
+input[type="password"]{
+	width:300px;
+	text-align: left;
+	color:white;
+	border:medium none;
+	padding:10px;
+	background-color:#060c0f;
+}
+
+H3{
+	color:#FFF;
+}
+
+p {
+	font-size: 18px;
+	margin: 0px auto;
+	margin-left:65px;
+	width: 80%;
+	text-align: center-left;
+	Color: #ebebe0;
+	
+}
+
+#email{
+	margin-left: -50px;
+}
+td{
+	color:#FFF;
+} 
+
+#fpas{
+margin-left : 50px;
+}
+
+a{
+	color: #53acef;
+}
+	
+#validateButton {
+	background-color: #53acef;
+	border-radius: 30px;
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 18px;
+	cursor: pointer;
+	width: 125px;
+	height: 40px;
+} 

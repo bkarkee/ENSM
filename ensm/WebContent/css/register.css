@@ -1,0 +1,115 @@
+html {
+	height: 100%;
+  	width: : 100%;
+}
+
+body{
+	margin:auto;
+	background-color:#12273b;
+	color: #FFFFFF;
+  	position: relative;
+}
+
+
+h1{
+    color: #EBEBE0;
+    position: relative;
+    text-align: center;
+}
+
+input, select, textarea {
+    font-family: inherit;
+    color: white;
+    width: 100%;
+    height: 40px;
+    background-color: black;
+    text-align: relative;
+    align: left;
+    font-size: 20px;
+}
+
+div{
+	font-size: 20px;
+}
+
+#footer {
+    color:white;
+    text-align:center;
+    position:relative;
+}
+
+#indexReturn {
+	position: relative;
+	margin: 0 auto;
+}
+
+
+#h5{
+	color: #ebebe0;
+	text-align: center;
+	left:auto;
+	right:auto;
+}
+
+#lbl {
+font-size: 20px;
+
+
+}
+
+#p3 {
+	color: #ebebe0;
+	text-algin: center;
+	left:auto;
+	right:auto;
+}
+
+#signUpFields {
+	border: 5px solid black;
+	background-color: #25527a;
+	width: 445px;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+#fieldTitle{
+	color: white; 
+	margin-left: 0px;
+	background-color: #25527a;
+}
+
+#create {
+	border-radius: 4px;
+	background-color: #53acef;
+	border: medium none;
+	color: white;
+	font-size: 28px;
+	width: 200px;
+	cursor: pointer;
+	margin: 0 auto;
+	display: block;
+	padding-left: 0px;
+}
+ 
+#label-error{
+ 	color: red;
+ 	background-color: black;
+}
+ 
+ #notification{
+  color: red;
+  background-color: black;
+ }
+ 
+ #phone {
+ 	width: 99%;
+ 	padding: 0px;
+ }
+
+ #signUpFieldHolder {
+ 	width: 99%;
+}
